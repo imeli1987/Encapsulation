@@ -25,11 +25,11 @@ public class App {
         basket.addProduct(product5);
         basket.addProduct(product6);
 
-        ProductBasket.printBasket();
+        ProductBasket.printedBasket();
 
         System.out.println(basket.equalsProduct("milk"));
         basket.clearBasket();
-        basket.printBasket();
+        basket.printedBasket();
 
     }
 }

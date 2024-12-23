@@ -22,39 +22,19 @@ public class ProductBasket {
         }
         return sum;
     }
-    public static void printBasket() {
+    public static void printedBasket(){
         int counter = 0;
         if (sumBasket() == 0) {
             System.out.println("Корзина пуста");
             return;
         }
         System.out.println("Содержимое корзины:");
-        for (Product prod: products) {
-            if (prod != null && prod.getDiscountPercent() < 0 && !prod.isFixPrice()) {
-                System.out.println(prod.getName() +
-                        ": " +
-                        prod.getPrice());
+        for (Product product: products){
+            if (product != null){
+                System.out.println(product);
             }
-
-            if (prod != null && prod.isSpecial()){
+            if (product != null && product.isSpecial()){
                 counter++;
-            }
-            if (prod != null &&
-                    counter > 0 &&
-                    prod.getDiscountPercent() >= 0 &&
-                    prod.getDiscountPercent() <= 100){
-                System.out.println(prod.getName() +
-                        " со скидкой: " +
-                        prod.getPrice() +
-                        " (" + prod.getDiscountPercent() +
-                        "%" +
-                        ")"
-                        );
-            }
-            if (prod != null && prod.isFixPrice()){
-                System.out.println(prod.getName() +
-                        " с фиксированной ценой: " +
-                        prod.getPrice());
             }
         }
         System.out.println("Итого: " + sumBasket());

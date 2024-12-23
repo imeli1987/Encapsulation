@@ -6,9 +6,6 @@ public class FixPriceProduct extends Product {
     public FixPriceProduct(String name) {
         super(name);
     }
-    public boolean isFixPrice(){
-        return true;
-    }
     @Override
     public int getPrice() {
         return PRICE;
@@ -20,11 +17,8 @@ public class FixPriceProduct extends Product {
 
     @Override
     public String toString() {
-        return "FixPriceProduct{}";
-    }
-
-    @Override
-    public int getDiscountPercent() {
-        return -1;
+        return getName() +
+                " с фиксированной ценой: " +
+                getPrice();
     }
 }

@@ -8,14 +8,6 @@ public class SimpleProduct extends Product{
         this.price = price;
     }
     @Override
-    public boolean isFixPrice(){
-        return false;
-    }
-    @Override
-    public int getDiscountPercent(){
-        return -1;
-    }
-    @Override
     public int getPrice() {
         return price;
     }
@@ -26,8 +18,8 @@ public class SimpleProduct extends Product{
 
     @Override
     public String toString() {
-        return "SimpleProduct{" +
-                "price=" + price +
-                '}';
+        return getName() +
+                ": " +
+                price;
     }
 }

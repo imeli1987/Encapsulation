@@ -11,8 +11,6 @@ public abstract class Product {
     }
     public abstract int getPrice();
     public abstract boolean isSpecial();
-    public abstract int getDiscountPercent();
-    public abstract boolean isFixPrice();
 
     @Override
     public String toString() {

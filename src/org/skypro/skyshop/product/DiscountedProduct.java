@@ -23,14 +23,10 @@ public class DiscountedProduct extends Product{
         return true;
     }
     @Override
-    public boolean isFixPrice(){
-        return false;
-    }
-    @Override
     public String toString() {
-        return "DiscountedProduct{" +
-                "basePrice=" + price +
-                ", discountPercent=" + discountPercent +
-                '}';
+        return getName() +
+                " со скидкой: " + getPrice() +
+                " (" + discountPercent +
+                "%)";
     }
 }
