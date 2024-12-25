@@ -53,31 +53,7 @@ public class ProductBasket {
         }
         return false;
     }
-
-    public void addProduct(DiscountedProduct product) {
-        if (findProduct()){
-            products[count++] = product;
-            System.out.println("Добавлен продукт: " +
-                    product.getName());
-        }
-        else {
-            System.out.println("Невозможно добавить продукт " +
-                    product.getName() + ". Корзина переполнена");
-        }
-    }
-    public void addProduct(SimpleProduct product) {
-        if (findProduct()){
-            products[count++] = product;
-            System.out.println("Добавлен продукт: " +
-                    product.getName());
-        }
-        else {
-            System.out.println("Невозможно добавить продукт " +
-                    product.getName() + ". Корзина переполнена");
-        }
-    }
-
-    public void addProduct(FixPriceProduct product) {
+    public void addProduct(Product product) {
         if (findProduct()){
             products[count++] = product;
             System.out.println("Добавлен продукт: " +
