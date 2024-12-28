@@ -58,24 +58,6 @@ public class App {
 
         System.out.println(Arrays.toString(searchEngine.search("Кофе")));
         System.out.println(Arrays.toString(searchEngine.search("Арабика")));
-//        Searchable[] results3 = searchEngine.search("сладкий");
-//        for (Searchable result : results3) {
-//            if (result != null) {
-//                System.out.println(result.getStringRepresentation());
-//            }
-//        }
-//        Searchable[] results2 = searchEngine.search("Article");
-//        for (Searchable result : results2) {
-//            if (result != null) {
-//                System.out.println(result.getStringRepresentation());
-//            }
-//        }
-//        Searchable[] results1 = searchEngine.search("Product");
-//        for (Searchable result : results1) {
-//            if (result != null) {
-//                System.out.println(result.getStringRepresentation());
-//            }
-//        }
 
     }
 }
