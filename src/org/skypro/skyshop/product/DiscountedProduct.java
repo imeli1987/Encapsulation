@@ -13,12 +13,11 @@ public class DiscountedProduct extends Product{
     public int getDiscountPercent(){
         return this.discountPercent;
     }
-    @Override
+
     public int getPrice() {
         return (int) (this.price * ( (double) 1 - ((double) this.discountPercent / 100)));
     }
 
-    @Override
     public boolean isSpecial(){
         return true;
     }
