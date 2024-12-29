@@ -3,7 +3,6 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.Article;
 import org.skypro.skyshop.search.SearchEngine;
@@ -34,7 +33,7 @@ public class App {
 
         System.out.println(basket.equalsProduct("milk"));
 //        basket.clearBasket();
-        basket.printedBasket();
+        ProductBasket.printedBasket();
 
         SearchEngine searchEngine = new SearchEngine(10);
 
@@ -58,6 +57,6 @@ public class App {
 
         System.out.println(Arrays.toString(searchEngine.search("Кофе")));
         System.out.println(Arrays.toString(searchEngine.search("Арабика")));
-
+        
     }
 }
