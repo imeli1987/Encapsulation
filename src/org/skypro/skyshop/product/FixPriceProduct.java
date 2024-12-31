@@ -6,11 +6,11 @@ public class FixPriceProduct extends Product {
     public FixPriceProduct(String name) {
         super(name);
     }
-    @Override
+
     public int getPrice() {
         return PRICE;
     }
-    @Override
+
     public boolean isSpecial(){
         return true;
     }

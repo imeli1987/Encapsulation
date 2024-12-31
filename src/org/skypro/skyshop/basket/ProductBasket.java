@@ -1,9 +1,6 @@
 package org.skypro.skyshop.basket;
 
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
 
 public class ProductBasket {
     static Product[] products = new Product[5];
