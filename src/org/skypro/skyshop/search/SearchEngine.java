@@ -30,7 +30,7 @@ public class SearchEngine {
         for (Searchable searchable : searchables) {
             if (searchable != null) {
                 int score = maxResult(query, searchable.getSearchTerm());
-                if (searchable != null && searchable.getSearchTerm().contains(query)) {
+                if (searchable.getSearchTerm().contains(query)) {
                     if (best == null || best.getSearchTerm().length() > searchable.getSearchTerm().length()) {
                         best = searchable;
                         maxScore = score;
@@ -40,18 +40,4 @@ public class SearchEngine {
         }
         return best;
     }
-//    public Searchable[] search(String query) {
-//        Searchable[] results = new Searchable[5];
-//        int count = 0;
-//        for (Searchable searchable : searchables) {
-//            if (searchable != null && searchable.getSearchTerm().contains(query)) {
-//                results[count++] = searchable;
-//                if (count == 5) {
-//                    break;
-//                }
-//            }
-//        }
-//        return results;
-//    }
-
 }
