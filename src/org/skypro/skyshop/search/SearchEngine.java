@@ -13,17 +13,14 @@ public class SearchEngine {
             }
         }
     }
-    public int maxResult(String str, String query) {
+    public int maxResult(String query, String str) {
         int count = 0;
-        int index = 0;
-        int indexSubstr = str.indexOf(query, index);
-        while (indexSubstr != -1) {
+        for ( int index = 0; (index = str.indexOf(query, index)) != -1; index += query.length()) {
             count++;
-            index += query.length();
-            indexSubstr = str.indexOf(query, index);
         }
         return count;
     }
+
     public Searchable bestResult(String query) {
         int maxScore = 0;
         Searchable best = null;
@@ -31,7 +28,7 @@ public class SearchEngine {
             if (searchable != null) {
                 int score = maxResult(query, searchable.getSearchTerm());
                 if (searchable.getSearchTerm().contains(query)) {
-                    if (best == null || best.getSearchTerm().length() > searchable.getSearchTerm().length()) {
+                    if (score > maxScore) {
                         best = searchable;
                         maxScore = score;
                     }

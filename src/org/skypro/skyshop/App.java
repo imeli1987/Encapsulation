@@ -50,8 +50,8 @@ public class App {
 
         Article article1 = new Article("Сахар", "сладкий");
         Article article2 = new Article("Молоко", "2,5 %");
-        Article article3 = new Article("Чай", "Робуста");
-        Article article4 = new Article("Кофе", "Арабика");
+        Article article3 = new Article("Кофе", "Кофе Робуста");
+        Article article4 = new Article("Кофе", "кофе арабика, производится из зёрен кофе сорта \"Арабика\". 100% кофе");
         Article article5 = new Article("Кофе", "Робуста");
 
         searchEngine.add(article1);
@@ -60,7 +60,7 @@ public class App {
         searchEngine.add(article4);
         searchEngine.add(article5);
 
-        String query = "Ананас";
+        String query = "Макароны";
         if (searchEngine.bestResult(query) == null){
             throw new BestResultNotFound("Ничего не найдено");
         } else {
