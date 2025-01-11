@@ -36,7 +36,7 @@ public class App {
         ProductBasket.printedBasket();
 
         System.out.println(basket.equalsProduct("milk"));
-//        basket.clearBasket();
+
         ProductBasket.printedBasket();
 
         SearchEngine searchEngine = new SearchEngine(15);
@@ -60,11 +60,11 @@ public class App {
         searchEngine.add(article4);
         searchEngine.add(article5);
 
-        String query = "Макароны";
-        if (searchEngine.bestResult(query) == null){
-            throw new BestResultNotFound("Ничего не найдено");
-        } else {
+        String query = "к1офе";
+        try {
             System.out.println(searchEngine.bestResult(query));
+        } catch (BestResultNotFound e) {
+            System.out.println("Подходящего товара не найдено");
         }
     }
 }
