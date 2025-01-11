@@ -60,7 +60,7 @@ public class App {
         searchEngine.add(article4);
         searchEngine.add(article5);
 
-        String query = "к1офе";
+        String query = "кофе";
         try {
             System.out.println(searchEngine.bestResult(query));
         } catch (BestResultNotFound e) {

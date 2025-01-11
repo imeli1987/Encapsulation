@@ -27,14 +27,13 @@ public class SearchEngine {
         int maxScore = 0;
         Searchable best = null;
         for (Searchable searchable : searchables) {
-            if (searchable != null) {
-                int score = maxResult(query, searchable.getSearchTerm());
-                if (searchable.getSearchTerm().contains(query)) {
-                    if (score > maxScore) {
-                        best = searchable;
-                        maxScore = score;
-                    }
-                }
+            if (searchable == null || !searchable.getSearchTerm().contains(query)) {
+                continue;
+            }
+            int score = maxResult(query, searchable.getSearchTerm());
+            if (score > maxScore) {
+                best = searchable;
+                maxScore = score;
             }
         }
         checkBestResultNotNull(best);
