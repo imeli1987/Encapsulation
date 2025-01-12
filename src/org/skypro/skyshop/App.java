@@ -6,9 +6,6 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.Article;
 import org.skypro.skyshop.search.SearchEngine;
-import org.skypro.skyshop.search.Searchable;
-
-import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -33,13 +30,13 @@ public class App {
             System.out.println("Ошибка при добавлении товара");
         }
 
-        ProductBasket.printedBasket();
+        basket.printBasket();
 
         System.out.println(basket.equalsProduct("milk"));
 
-        ProductBasket.printedBasket();
+        basket.printBasket();
 
-        SearchEngine searchEngine = new SearchEngine(15);
+        SearchEngine searchEngine = new SearchEngine();
 
         searchEngine.add(product1);
         searchEngine.add(product2);
@@ -66,5 +63,21 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Подходящего товара не найдено");
         }
+
+        basket.removeProduct("Кофе");
+        basket.printRemovedList();
+        basket.printBasket();
+
+        basket.removeProduct("Кофе");
+        basket.printRemovedList();
+        basket.printBasket();
+
     }
 }
+
+
+
+
+
+
+

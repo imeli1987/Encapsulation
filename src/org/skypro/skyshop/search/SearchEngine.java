@@ -2,18 +2,17 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.BestResultNotFound;
 
-public class SearchEngine {
-    private final Searchable[] searchables;
+import java.util.LinkedList;
 
-    public SearchEngine(int size) { searchables = new Searchable[size]; }
+public class SearchEngine {
+    private final LinkedList<Searchable> searchables;
+
+    public SearchEngine() {
+        searchables = new LinkedList<>();
+    }
 
     public void add(Searchable searchable) {
-        for (int i = 0; i < searchables.length; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = searchable;
-                break;
-            }
-        }
+        searchables.add(searchable);
     }
     public int maxResult(String query, String str) {
         int count = 0;
