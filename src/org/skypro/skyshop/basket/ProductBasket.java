@@ -2,13 +2,13 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-public class ProductBasket {
-    static Product[] products = new Product[5];
-    static int count;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-    public boolean findProduct(){
-        return count < products.length;
-    }
+public class ProductBasket {
+    static LinkedList<Product> products = new LinkedList<>();
+    static LinkedList<Product> delProducts = new LinkedList<>();
+    static int count;
 
     public static int sumBasket() {
         int sum = 0;
@@ -19,7 +19,7 @@ public class ProductBasket {
         }
         return sum;
     }
-    public static void printedBasket(){
+    public void printBasket(){
         int counter = 0;
         if (sumBasket() == 0) {
             System.out.println("Корзина пуста");
@@ -38,7 +38,7 @@ public class ProductBasket {
         System.out.println("Специальных товаров: " + counter);
     }
     public void clearBasket() {
-        products = new Product[5];
+        products = new LinkedList<>();
         count = 0;
         System.out.println("Корзина очищена");
     }
@@ -51,14 +51,30 @@ public class ProductBasket {
         return false;
     }
     public void addProduct(Product product) {
-        if (findProduct()){
-            products[count++] = product;
-            System.out.println("Добавлен продукт: " +
-                    product.getName());
+        products.add(product);
+        System.out.println("Добавлен продукт: " +
+                product.getName());
+    }
+    public LinkedList<Product> removeProduct(String name) {
+        delProducts = new LinkedList<>();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()){
+            Product product = iterator.next();
+            if (product != null && product.getName().equals(name)) {
+                delProducts.add(product);
+                System.out.println("Удален продукт: " + product);
+                iterator.remove();
+            }
         }
-        else {
-            System.out.println("Невозможно добавить продукт " +
-                    product.getName() + ". Корзина переполнена");
+        return delProducts;
+    }
+    public void printRemovedList(){
+        System.out.println("Удаленные товары:");
+        for (Product product : delProducts){
+            System.out.println(product);
+        }
+        if (delProducts.isEmpty()) {
+            System.out.println("Список пуст");
         }
     }
 
