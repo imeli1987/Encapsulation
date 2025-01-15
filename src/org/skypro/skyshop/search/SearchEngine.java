@@ -1,48 +1,29 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.BestResultNotFound;
-
-import java.util.LinkedList;
+import java.util.*;
 
 public class SearchEngine {
-    private final LinkedList<Searchable> searchables;
+    private static Map<String, List<Searchable>> searchables;
 
     public SearchEngine() {
-        searchables = new LinkedList<>();
+        searchables = new TreeMap<>();
     }
 
     public void add(Searchable searchable) {
-        searchables.add(searchable);
-    }
-    public int maxResult(String query, String str) {
-        int count = 0;
-        for ( int index = 0; (index = str.indexOf(query, index)) != -1; index += query.length()) {
-            count++;
-        }
-        return count;
-    }
+        searchables.computeIfAbsent(searchable.getName(), k -> new ArrayList<>()).add(searchable);}
 
-    public Searchable bestResult(String query) throws BestResultNotFound {
-        int maxScore = 0;
-        Searchable best = null;
-        for (Searchable searchable : searchables) {
-            if (searchable == null || !searchable.getSearchTerm().contains(query)) {
-                continue;
-            }
-            int score = maxResult(query, searchable.getSearchTerm());
-            if (score > maxScore) {
-                best = searchable;
-                maxScore = score;
+    public static Map<String, Searchable> search(String query) {
+        Map<String, Searchable> searchMap = new TreeMap<>();
+        for (Map.Entry<String, List<Searchable>> entry : searchables.entrySet()) {
+            if (entry.getKey().contains(query)) {
+                for (Searchable searchable : entry.getValue()) {
+                    searchMap.put(searchable.getName(), searchable);
+                }
             }
         }
-        checkBestResultNotNull(best);
-        return best;
-    }
-
-    private void checkBestResultNotNull(Searchable best) throws BestResultNotFound {
-        if (best == null){
-            throw new BestResultNotFound("Ничего не найдено");
+        if (searchMap.isEmpty()){
+            System.out.println("Поиск не дал результата");
         }
+        return searchMap;
     }
-
 }
