@@ -8,7 +8,7 @@ import org.skypro.skyshop.search.Article;
 import org.skypro.skyshop.search.SearchEngine;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BestResultNotFound {
 
         ProductBasket basket = new ProductBasket();
 
@@ -52,7 +52,7 @@ public class App {
         Article article1 = new Article("Сахар", "сладкий");
         Article article2 = new Article("Молоко", "2,5 %");
         Article article3 = new Article("Кофе растворимый", "Кофе Робуста");
-        Article article4 = new Article("Кофе черный", "кофе арабика, производится из зёрен кофе сорта \"Арабика\". 100% кофе");
+        Article article4 = new Article("Кофе черный", "Кофе арабика, производится из зёрен кофе сорта \"Арабика\". 100% Кофе");
         Article article5 = new Article("Кофе робуста", "Робуста");
 
         searchEngine.add(article1);
@@ -60,7 +60,7 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
         searchEngine.add(article5);
-        searchEngine.add(new Article("Чай", "Чай зелёный"));
+        searchEngine.add(new Article("Чай", "Чай зелёный. Чай в пакетиках"));
         searchEngine.add(new Article("Чай", "Чай черный"));
 
 
@@ -84,9 +84,15 @@ public class App {
 
         System.out.println();
 
-        String query = "Кфе";
+        String query = "Кофе";
         System.out.println(searchEngine.search(query));
 
+        System.out.println();
+        try {
+            System.out.println(searchEngine.bestResult(query));
+        } catch (BestResultNotFound e) {
+            System.out.println("Подходящего товара нет");
+        }
     }
 }
 
