@@ -22,13 +22,13 @@ public class SearchEngine {
         return count;
     }
 
-    public Map<String, List<Searchable>> search(String query) {
+    public Map<String, Searchable> search(String query) {
         List<Searchable> results = new LinkedList<>();
-        Map<String, List<Searchable>> map = new TreeMap<>();
+        Map<String, Searchable> map = new TreeMap<>();
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(query)) {
                 results.add(searchable);
-                map.computeIfAbsent(searchable.getName(), k -> new ArrayList<>()).add(searchable);
+                map.put(searchable.getName(), searchable);
             }
         }
         if (results.isEmpty()){
@@ -40,18 +40,16 @@ public class SearchEngine {
     public Searchable bestResult(String query) throws BestResultNotFound {
         int maxScore = 0;
         Searchable best = null;
-        Map<String, List<Searchable>> results = search(query);
-        for (Map.Entry<String, List<Searchable>> entry : results.entrySet()){
-            List<Searchable> resultList = entry.getValue();
-            for (Searchable searchable : resultList) {
-                if (searchable == null || !searchable.getSearchTerm().contains(searchable.getName())) {
-                    continue;
-                }
-                int score = maxResult(query, searchable.getSearchTerm());
-                if (score > maxScore) {
-                    best = searchable;
-                    maxScore = score;
-                }
+        Map<String, Searchable> results = search(query);
+        for (Map.Entry<String, Searchable> entry : results.entrySet()){
+            Searchable searchable = entry.getValue();
+            if (searchable == null || !searchable.getSearchTerm().contains(searchable.getName())) {
+                continue;
+            }
+            int score = maxResult(query, searchable.getSearchTerm());
+            if (score > maxScore) {
+                best = searchable;
+                maxScore = score;
             }
         }
         checkBestResultNotNull(best);
