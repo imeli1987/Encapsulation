@@ -2,10 +2,10 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.BestResultNotFound;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class SearchEngine {
-    private final LinkedList<Searchable> searchables;
+    private final List<Searchable> searchables;
 
     public SearchEngine() {
         searchables = new LinkedList<>();
@@ -22,11 +22,28 @@ public class SearchEngine {
         return count;
     }
 
+    public Map<String, Searchable> search(String query) {
+        List<Searchable> results = new LinkedList<>();
+        Map<String, Searchable> map = new TreeMap<>();
+        for (Searchable searchable : searchables) {
+            if (searchable != null && searchable.getSearchTerm().contains(query)) {
+                results.add(searchable);
+                map.put(searchable.getName(), searchable);
+            }
+        }
+        if (results.isEmpty()){
+            System.out.println("Поиск не дал результатов");
+        }
+        return map;
+    }
+
     public Searchable bestResult(String query) throws BestResultNotFound {
         int maxScore = 0;
         Searchable best = null;
-        for (Searchable searchable : searchables) {
-            if (searchable == null || !searchable.getSearchTerm().contains(query)) {
+        Map<String, Searchable> results = search(query);
+        for (Map.Entry<String, Searchable> entry : results.entrySet()){
+            Searchable searchable = entry.getValue();
+            if (searchable == null || !searchable.getSearchTerm().contains(searchable.getName())) {
                 continue;
             }
             int score = maxResult(query, searchable.getSearchTerm());
