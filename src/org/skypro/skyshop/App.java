@@ -14,7 +14,7 @@ public class App {
 
         DiscountedProduct product1 = new DiscountedProduct("Арабика", 500, 10);
         SimpleProduct product2 = new SimpleProduct("Кофе в зёрнах", 600);
-        FixPriceProduct product3 = new FixPriceProduct("Чай");
+        FixPriceProduct product3 = new FixPriceProduct("Чай зелёный");
         DiscountedProduct product4 = new DiscountedProduct("Кофе", 50, 20);
         SimpleProduct product5 = new SimpleProduct("Кофе молотый", 250);
         DiscountedProduct product6 = new DiscountedProduct("Ананас", 800, 20);
@@ -28,6 +28,8 @@ public class App {
             basket.addProduct(product5);
             basket.addProduct(product6);
             basket.addProduct(new SimpleProduct("Чай", 500));
+            basket.addProduct(new SimpleProduct("Чай", 500));
+            basket.addProduct(new DiscountedProduct("Чай", 300, 15));
             basket.addProduct(new DiscountedProduct("Чай", 300, 15));
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Ошибка при добавлении товара");
@@ -60,8 +62,9 @@ public class App {
         searchEngine.add(article3);
         searchEngine.add(article4);
         searchEngine.add(article5);
-        searchEngine.add(new Article("Чай", "Чай зелёный. Чай в пакетиках"));
-        searchEngine.add(new Article("Чай", "Чай черный"));
+        searchEngine.add(new Article("Чай зелёный", "Чай зелёный. Чай в пакетиках"));
+        searchEngine.add(new Article("Чай чёрный", "Чай зелёный. Чай в пакетиках"));
+        searchEngine.add(new Article("Чай растворимый", "Чай черный"));
 
 
         System.out.println();
@@ -84,7 +87,7 @@ public class App {
 
         System.out.println();
 
-        String query = "Кофе";
+        String query = "Чай";
         System.out.println(searchEngine.search(query));
 
         System.out.println();
